@@ -33,8 +33,7 @@ function repeat(userOpts) {
 
     _prompt = function () {
         rl.question(opts.prompt + opts.delimiter, function(res) {
-            opts.onLine(res);
-
+            opts.onLine(res)
             prompt();
         });
     };
