@@ -7,6 +7,7 @@ var rl = readline.createInterface({
 
 var opts = {
     prompt: '> ',
+    delimiter: '',
     onLine: function(res) {
         console.log('Response:', res);
     },
@@ -28,7 +29,7 @@ function repeat(userOpts) {
 
     rl.on('SIGINT', function() {
         console.log();
-        opts.SIGINT()
+        opts.onSIGINT()
     });
 
     _prompt = function () {
