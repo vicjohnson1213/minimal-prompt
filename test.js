@@ -1,17 +1,23 @@
 var prompt = require('./prompt.js');
 
-prompt({
+prompt.question(['Name number one', 'Other'], {
     prompt: '>> ',
-    onLine: function(res) {
-        console.log('this is the shit:', res);
-        if (res === 'poop') {
-            prompt.close();
-        }
+    delimiter: ': ',
+    // onLine: function(res) {
+    //     console.log('this is the shit:', res);
+    //     if (res === 'poop') {
+    //         prompt.close();
+    //     }
+    // },
+    onComplete: function(results) {
+        console.log(results);
+        prompt.close();
     },
-    onClose: function() {
-        console.log('adios');
+    onSIGINT: function() {
+        console.log();
+        console.log('GOODBYE');
         process.exit(0);
     }
 });
 
-prompt.prompt();
+prompt.start();
