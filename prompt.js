@@ -15,6 +15,10 @@ var opts = {
     },
     onSIGINT: function() {
         process.exit(0);
+    },
+    onComplete: function(results) {
+        console.log(results);
+        process.exit(0);
     }
 };
 
