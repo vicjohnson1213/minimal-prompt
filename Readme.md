@@ -26,11 +26,22 @@ Used to prompt the user with a specific set of questions and get their answers t
 3. `onComplete` *(function)*: The function invoked when all questions are complete.
 4. `onClose` *(function)*: The function invoked when the command-line is closed.
 5. `onSIGINT` *(function)*: The function invoked when Ctrl-C is pressed.
+6. `formatPrompt` *(function)*: A function to format the prompt.
+    - `formatPrompt(prompt, delimiter, name)`
+        1. `prompt` *(string)*: The specified prompt string.
+        2. `delimiter` *(string)*: The specified delimter string.
+        3. `name` *(string)*: If using a `question` prompt, the question being asked. (Only available for a question prompt)
 
 **Example**
 
 ```javascript
 prompt.question(['First Name', 'Last Name'], {
+    prompt: '>',
+    delimiter: ':',
+    formatPrompt: function(prompt, delim, name) {
+        // Note: this is the default prompt.
+        return prompt + delim + ' ' + name + delim + ' ';
+    },
     onComplete: function(results) {
         console.log('First name:', results.firstName);
         console.log('Last name:', results.lastName);
