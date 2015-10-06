@@ -1,5 +1,5 @@
 {
-  "name": "prompt",
+  "name": "minimal-prompt",
   "version": "1.0.0",
   "description": "A minimal command line prompting library",
   "main": "prompt.js",
