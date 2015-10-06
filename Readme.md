@@ -24,9 +24,7 @@ Used to prompt the user with a specific set of questions and get their answers t
 1. `prompt` *(string)*: A string to begin each input line with.
 2. `delimiter` *(string)*: A string to separate the prompt from the user input.
 3. `onComplete` *(function)*: The function invoked when all questions are complete.
-4. `onClose` *(function)*: The function invoked when the command-line is closed.
-5. `onSIGINT` *(function)*: The function invoked when Ctrl-C is pressed.
-6. `formatPrompt` *(function)*: A function to format the prompt.
+4. `formatPrompt` *(function)*: A function to format the prompt.
     - `formatPrompt(prompt, delimiter, name)`
         1. `prompt` *(string)*: The specified prompt string.
         2. `delimiter` *(string)*: The specified delimter string.
@@ -62,9 +60,7 @@ Used to repeatedly prompt the user for information using the same prompt.
 1. `prompt` *(string)*: A string to begin each input line with.
 2. `delimiter` *(string)*: A string to separate the prompt from the user input.
 3. `onLine` *(function)*: The function invoked when a new line of input is ready.
-4. `onClose` *(function)*: The function invoked when the command-line is closed.
-5. `onSIGINT` *(function)*: The function invoked when Ctrl-C is pressed.
-6. `formatPrompt` *(function)*: A function to format the prompt.
+4. `formatPrompt` *(function)*: A function to format the prompt.
     - `formatPrompt(prompt, delimiter)`
         1. `prompt` *(string)*: The specified prompt string.
         2. `delimiter` *(string)*: The specified delimter string.
