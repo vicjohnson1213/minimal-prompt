@@ -1,4 +1,4 @@
-# Minimal Prompt
+# Minimal Prompt [![Build Status](https://travis-ci.org/vicjohnson1213/minimal-prompt.svg)](https://travis-ci.org/vicjohnson1213/minimal-prompt)
 
 > A library for creating command-line interfaces and harvesting information from them.
 
