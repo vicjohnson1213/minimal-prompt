@@ -24,7 +24,7 @@ function question(questions, newOpts) {
         // with the results.
         if (questions.length) {
             var name = questions.shift();
-            
+
             rl.question(opts.formatPrompt(opts.prompt, opts.delimiter, name), function(res) {
 
                 // Remove any invalid characters for variable names and camel case
@@ -84,12 +84,11 @@ function reset() {
 }
 
 function overrideOpts(newOpts) {
-    opts.prompt = newOpts.prompt || opts.prompt;
-    opts.delimiter = newOpts.delimiter || opts.delimiter;
+    opts.prompt = newOpts.prompt !== undefined ? newOpts.prompt : opts.prompt;
+    opts.delimiter = newOpts.delimiter !== undefined ? newOpts.delimiter : opts.delimiter;
     opts.formatPrompt = newOpts.formatPrompt || opts.formatPrompt;
     opts.onLine = newOpts.onLine || opts.onLine;
     opts.onComplete = newOpts.onComplete || opts.onComplete;
-    opts.questions = newOpts.questions || opts.questions;
 }
 
 module.exports.repeat = repeat;
