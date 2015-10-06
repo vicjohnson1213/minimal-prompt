@@ -1,61 +1,26 @@
-var readline = require('readline');
+var readline = require('readline'),
+    rl, opts, _prompt;
 
-var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-var opts = {
-    prompt: '>',
-    delimiter: ':',
-    onLine: function(res) {
-        console.log('Response:', res);
-    },
-    onClose: function() {
-    },
-    onSIGINT: function() {
-        process.exit(0);
-    },
-    onComplete: function(results) {
-        console.log(results);
-        process.exit(0);
-    },
-    formatPrompt: function(prompt, delim, name) {
-        return prompt + delim + ' ' + name + delim + ' ';
-    }
-};
-
-var _prompt;
-
-function repeat(userOpts) {
-    overrideOpts(userOpts);
-
-    rl.on('close', function() {
-        opts.onClose();
-    });
-
-    rl.on('SIGINT', function() {
-        console.log();
-        opts.onSIGINT()
-    });
+function repeat(newOpts) {
+    reset();
+    overrideOpts(newOpts || {});
 
     _prompt = function () {
         rl.question(opts.formatPrompt(opts.prompt, opts.delimiter), function(res) {
-            opts.onLine(res)
+            opts.onLine(res);
             prompt();
         });
     };
 }
 
 function question(questions, newOpts) {
-    newOpts.questions = questions;
-    overrideOpts(newOpts);
-
+    reset();
+    overrideOpts(newOpts || {});
     var results = {};
 
     _prompt = function() {
-        if (opts.questions.length) {
-            var name = opts.questions.shift();
+        if (questions.length) {
+            var name = questions.shift();
             rl.question(opts.formatPrompt(opts.prompt, opts.delimiter, name), function(res) {
                 var fixedName = name.replace(/[^A-Za-z_\d\s]/, '').split(/\s+/).map(function(el, idx) {
                     return idx !== 0 ?
@@ -76,8 +41,36 @@ function prompt() {
     _prompt();
 }
 
-function close() {
-    rl.close();
+function reset() {
+    opts = {
+        prompt: '>',
+        delimiter: ':',
+        formatPrompt: function(prompt, delim, name) {
+            return prompt + delim + ' ' + (name ? name + delim + ' ' : '');
+        },
+        onLine: function(res) {
+            console.log('Response:', res);
+        },
+        onComplete: function(results) {
+            console.log(results);
+            process.exit(0);
+        }
+    };
+
+    if (rl) {
+        rl.close();
+        rl = null;
+    }
+
+    rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    rl.on('SIGINT', function() {
+        console.log();
+        process.exit(0);
+    });
 }
 
 function overrideOpts(newOpts) {
@@ -85,14 +78,11 @@ function overrideOpts(newOpts) {
     opts.delimiter = newOpts.delimiter || opts.delimiter;
     opts.formatPrompt = newOpts.formatPrompt || opts.formatPrompt;
     opts.onLine = newOpts.onLine || opts.onLine;
-    opts.onClose = newOpts.onClose || opts.onClose;
     opts.onComplete = newOpts.onComplete || opts.onComplete;
-    opts.onSIGINT = newOpts.onSIGINT || opts.onSIGINT;
     opts.questions = newOpts.questions || opts.questions;
-
 }
 
 module.exports.repeat = repeat;
 module.exports.question = question;
 module.exports.start = prompt;
-module.exports.close = close;
+module.exports.reset = reset;

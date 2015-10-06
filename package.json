@@ -5,11 +5,17 @@
   "main": "prompt.js",
   "dependencies": {},
   "devDependencies": {
+    "expect.js": "^0.3.1",
+    "istanbul": "^0.3.21",
     "mocha": "^2.3.3",
-    "mock-stdin": "^0.3.0"
+    "mock-stdin": "^0.3.0",
+    "strip-ansi": "^3.0.0"
   },
   "scripts": {
-    "test": "mocha -R dot"
+    "test": "mocha -R dot",
+    "testw": "mocha --recursive -R dot -w",
+    "cov": "istanbul cover _mocha -- --recursive -R nyan",
+    "covo": "istanbul cover _mocha -- --recursive -R nyan && open coverage/lcov-report/index.html"
   },
   "repository": {
     "type": "git",
