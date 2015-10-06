@@ -3,6 +3,14 @@
   "version": "1.0.3",
   "description": "A minimal command line prompting library",
   "main": "prompt.js",
+  "keywords": [
+    "prompt",
+    "command-line",
+    "command",
+    "line",
+    "input",
+    "question"
+  ],
   "dependencies": {},
   "devDependencies": {
     "expect.js": "^0.3.1",
