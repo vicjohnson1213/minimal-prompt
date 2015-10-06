@@ -19,14 +19,24 @@ function question(questions, newOpts) {
     var results = {};
 
     _prompt = function() {
+
+        // If there are any questions left, ask them.  Otherwise call onComplete
+        // with the results.
         if (questions.length) {
             var name = questions.shift();
+            
             rl.question(opts.formatPrompt(opts.prompt, opts.delimiter, name), function(res) {
-                var fixedName = name.replace(/[^A-Za-z_\d\s]/, '').split(/\s+/).map(function(el, idx) {
-                    return idx !== 0 ?
-                        el.charAt(0).toUpperCase() + el.slice(1) :
-                        el.toLowerCase();
-                }).join('');
+
+                // Remove any invalid characters for variable names and camel case
+                // the words in the question.
+                var fixedName = name.replace(/[^A-Za-z_\d\s]/, '')
+                    .split(/\s+/)
+                    .map(function(el, idx) {
+                        return idx !== 0 ?
+                            el.charAt(0).toUpperCase() + el.slice(1) :
+                            el.toLowerCase();
+                    })
+                    .join('');
 
                 results[fixedName] = res;
                 prompt();
