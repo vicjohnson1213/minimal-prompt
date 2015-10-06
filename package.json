@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vicjohnson1213/prompt.git"
+    "url": "git+https://github.com/vicjohnson1213/minimal-prompt.git"
   },
   "author": "Victor Johnson <vicjohnson1213@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vicjohnson1213/prompt/issues"
+    "url": "https://github.com/vicjohnson1213/minimal-prompt/issues"
   },
-  "homepage": "https://github.com/vicjohnson1213/prompt#readme"
+  "homepage": "https://github.com/vicjohnson1213/minimal-prompt#readme"
 }
