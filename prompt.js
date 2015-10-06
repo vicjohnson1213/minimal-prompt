@@ -24,7 +24,7 @@ function question(questions, newOpts) {
         // with the results.
         if (questions.length) {
             var name = questions.shift();
-            
+
             rl.question(opts.formatPrompt(opts.prompt, opts.delimiter, name), function(res) {
 
                 // Remove any invalid characters for variable names and camel case
