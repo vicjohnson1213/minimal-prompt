@@ -1,4 +1,6 @@
-# Minimal Prompt [![Build Status](https://travis-ci.org/vicjohnson1213/minimal-prompt.svg)](https://travis-ci.org/vicjohnson1213/minimal-prompt)
+# Minimal Prompt
+
+[![Build Status](https://travis-ci.org/vicjohnson1213/minimal-prompt.svg)](https://travis-ci.org/vicjohnson1213/minimal-prompt)
 
 > A library for creating command-line interfaces and harvesting information from them.
 
@@ -33,6 +35,8 @@ Used to prompt the user with a specific set of questions and get their answers t
 **Example**
 
 ```javascript
+var prompt = require('minimal-prompt');
+
 prompt.question(['First Name', 'Last Name'], {
     prompt: '>',
     delimiter: ':',
@@ -45,6 +49,9 @@ prompt.question(['First Name', 'Last Name'], {
         console.log('Last name:', results.lastName);
     }
 });
+
+// prompt.start() will begin the prompting process.
+prompt.start();
 ```
 
 ### prompt.repeat(options)
@@ -68,6 +75,8 @@ Used to repeatedly prompt the user for information using the same prompt.
 **Example**
 
 ```javascript
+var prompt = require('minimal-prompt');
+
 prompt.repeat({
     prompt: '>',
     delimiter: ':',
@@ -79,4 +88,7 @@ prompt.repeat({
         console.log('Response:', res);
     }
 });
+
+// prompt.start() will begin the prompting process.
+prompt.start();
 ```
