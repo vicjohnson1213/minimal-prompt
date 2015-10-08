@@ -1,4 +1,5 @@
 var readline = require('readline'),
+    helpers = require('./helpers.js'),
     rl, opts, _prompt;
 
 function repeat(newOpts) {
@@ -18,6 +19,8 @@ function question(questions, newOpts) {
     overrideOpts(newOpts || {});
     var results = {};
 
+    var fixedNames = helpers.camelCase(questions);
+
     _prompt = function() {
 
         // If there are any questions left, ask them.  Otherwise call onComplete
@@ -26,19 +29,7 @@ function question(questions, newOpts) {
             var name = questions.shift();
 
             rl.question(opts.formatPrompt(opts.prompt, opts.delimiter, name), function(res) {
-
-                // Remove any invalid characters for variable names and camel case
-                // the words in the question.
-                var fixedName = name.replace(/[^A-Za-z_\d\s]/, '')
-                    .split(/\s+/)
-                    .map(function(el, idx) {
-                        return idx !== 0 ?
-                            el.charAt(0).toUpperCase() + el.slice(1) :
-                            el.toLowerCase();
-                    })
-                    .join('');
-
-                results[fixedName] = res;
+                results[fixedNames.shift()] = res;
                 prompt();
             });
         } else {

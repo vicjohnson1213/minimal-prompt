@@ -1,6 +1,6 @@
 var expect = require('expect.js'),
     // stdout = require('test-console').stdout,
-    mockStdout = require('./helpers.js').mockStdout,
+    mockStdout = require('./testHelpers.js').mockStdout,
     stdin = require('mock-stdin').stdin(),
     strip = require('strip-ansi'),
     prompt = require('../prompt.js');
