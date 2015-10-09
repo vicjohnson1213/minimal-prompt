@@ -1,17 +1,18 @@
-function mockStdout() {
-    var oldStdout = process.stdout.write;
-    var output = [];
+var expect = require('expect.js'),
+    helpers = require('../helpers.js');
 
-    process.stdout.write = function(string) {
-        output.push(string);
-    };
+describe('helpers', function() {
+    describe('camelCase', function() {
+        it('should camelCase', function() {
+            expect(helpers.camelCase(['some string', 'another string'])).to.eql(['someString', 'anotherString']);
+        });
 
-    return {
-        output: output,
-        restore: function() {
-            process.stdout.write = oldStdout;
-        }
-    };
-}
+        it('should handle a single string', function() {
+            expect(helpers.camelCase('some string')).to.equal('someString');
+        });
 
-module.exports.mockStdout = mockStdout;
+        it('should remove special characters', function() {
+            expect(helpers.camelCase('!question_#5')).to.equal('question_5');
+        });
+    });
+});
